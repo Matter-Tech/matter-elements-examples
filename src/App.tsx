@@ -10,17 +10,26 @@ const portfolioQuery: MatterElements.PortfolioQuery = {
     {
       id: "MATTER_SAMPLE_PORTFOLIO_A",
       type: "uid",
-      weight: 1500,
+      allocation: {
+        amount: 10000,
+        currency: "EUR",
+      },
     },
     {
       id: "MATTER_SAMPLE_PORTFOLIO_B",
       type: "uid",
-      weight: 500,
+      allocation: {
+        amount: 15000,
+        currency: "EUR",
+      },
     },
     {
       id: "MATTER_SAMPLE_PORTFOLIO_C",
       type: "uid",
-      weight: 123,
+      allocation: {
+        amount: 20000,
+        currency: "EUR",
+      },
     },
   ],
 };

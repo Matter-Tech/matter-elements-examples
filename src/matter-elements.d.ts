@@ -9,9 +9,9 @@ declare namespace MatterElements {
    * @return An instance of the Element to render to a container.
    */
   function singleImpact(
-    type: "co2" | "fossil" | "waste" | "energy",
-    portfolio: PortfolioQuery,
-    options?: SingleImpactOptions
+      type: "co2" | "fossil" | "waste" | "energy",
+      portfolio: PortfolioQuery,
+      options?: SingleImpactOptions,
   ): SingleImpact;
 
   /**
@@ -41,10 +41,10 @@ declare namespace MatterElements {
     /**
      * An array of portfolio identifiers with weights assigned to them.
      */
-    ids: WeightedIdentifier[];
+    ids: Array<IdentifierWithAllocation>;
   }
 
-  interface WeightedIdentifier {
+  interface IdentifierWithAllocation {
     /**
      * Identifier type.
      */
@@ -54,28 +54,38 @@ declare namespace MatterElements {
      */
     id: string;
     /**
-     * Weight of that portfolio in the result.
+     * Allocation of that portfolio in the result.
      */
-    weight: number;
+    allocation: {
+      /**
+       * Amount of the allocation.
+       */
+      amount: number;
+      /**
+       * Currency of the allocation.
+       * Optional. Defaults to "EUR".
+       */
+      currency?: string;
+    };
   }
 
   interface SingleImpactOptions {
     /**
      * An array of CSS file URLs to be used by the Element.
      */
-    cssUrls?: string[];
+    cssUrls?: Array<string>;
     /**
      * An array of URLs to be preloaded as images to improve caching.
      */
-    preloadImages?: string[];
+    preloadImages?: Array<string>;
     /**
      * An array of URLs to be preloaded as CSS files to improve caching.
      */
-    preloadStyles?: string[];
+    preloadStyles?: Array<string>;
     /**
      * An ordered array of page identifiers. The element will show just the pages specified.
      */
-    pages?: string[];
+    pages?: Array<string>;
     /**
      * Whether to reset the element to the first page, when the cursor leaves the Element.
      */
@@ -116,10 +126,10 @@ declare namespace MatterElements {
        * being page ids and values being links to use on corresponding pages.
        */
       readMoreLinks:
-        | string
-        | {
-            [key: string]: string;
-          };
+          | string
+          | {
+              [key: string]: string;
+            };
       /**
        * Text for the tooltip button. Defaults to "Read more".
        */
