@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./App.css";
+import "./matter-style.css";
 
 // Replace with your API key
 const API_KEY = "mk_matter_sample";
@@ -32,6 +33,13 @@ const portfolioQuery: MatterElements.PortfolioQuery = {
       },
     },
   ],
+};
+
+const matterOptions = {
+  locale: "da-dk",
+  tooltip: {
+    readMoreLinks: "https://thisismatter.com",
+  },
 };
 
 function App() {
@@ -72,13 +80,7 @@ function App() {
       const singleImpactElement = MatterElements.singleImpact(
         "co2", // "co2", "waste", "energy", "fossil"
         portfolio,
-        {
-          // This CSS file will be loaded by the Matter Element and will alter the look
-          // and feel of that Element. We must use full paths here, because this file will be
-          // loaded from different origin. Also in production this file should allow
-          // https://elements.thisismatter.com/ origin to load it (with correct CORS headers).
-          cssUrls: [`${window.location.origin}/matter-style.css`],
-        }
+        matterOptions,
       );
 
       // assign a container for rendering.
